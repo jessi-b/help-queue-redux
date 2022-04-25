@@ -1,4 +1,5 @@
 export default (state = {}, action) => {
+//create
   const { names, location, issue, id } = action;
   switch (action.type) { //looks at action type prop
   case 'ADD_TICKET':
@@ -12,7 +13,12 @@ export default (state = {}, action) => {
         id: id
       }
     });
-  default:
+//delete
+  case 'DELETE_TICKET':
+    let newState = { ...state };
+    delete newState[id];
+    return newState;
+  default:  // This will generally just return the unchanged state.
     return state; //Every single time, you must return the new state object.
     //Our reducer hasn't altered anything. Instead, it made a copy of the state that was passed in as argument, altered the copy, and then returned the altered copy so it can be used elsewhere in our code.
   }
