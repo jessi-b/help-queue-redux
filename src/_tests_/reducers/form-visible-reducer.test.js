@@ -7,6 +7,6 @@ describe("formVisibleReducer", () => {
   });
 //toggle form
   test('Should toggle form visibility state to true', () => {
-    expect(formVisibleReducer(false, { type: 'TOGGLE_FORM' })).toEqual(true);
+    expect(formVisibleReducer(false, { type: 'c.TOGGLE_FORM' })).toEqual(true);
   });
 });

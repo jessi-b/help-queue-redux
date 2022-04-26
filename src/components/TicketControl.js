@@ -25,7 +25,7 @@ class TicketControl extends React.Component {
     } else {
       const { dispatch } = this.props;
       const action = 
-      // {type: 'TOGGLE_FORM'}
+      // {type: 'c.TOGGLE_FORM'}
       a.toggleForm();
       dispatch(action);
     dispatch(action);
@@ -44,7 +44,7 @@ class TicketControl extends React.Component {
     // }
     // dispatch(action);  //dispatches our action and updates the store
     // const action2 = {
-    //   type: 'TOGGLE_FORM'
+    //   type: 'c.TOGGLE_FORM'
     // }
     // dispatch(action2);
     const action = a.addTicket(newTicket);
@@ -71,7 +71,7 @@ class TicketControl extends React.Component {
   }
   handleEditingTicketInList = (ticketToEdit) => {  //If it's a new id, a new ticket will be added to the store. If it's an id that already exists, the existing ticket will be replaced
     const { dispatch } = this.props;
-    const { id, names, location, issue } = ticketToEdit;
+    // const { id, names, location, issue } = ticketToEdit;
     // const action = {
     //   type: 'ADD_TICKET',
     //   id: id,

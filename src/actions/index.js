@@ -4,7 +4,7 @@ export const deleteTicket = id => ({
 });
 
 export const toggleForm = () => ({
-  type: 'TOGGLE_FORM'
+  type: 'c.TOGGLE_FORM'
 });
 
 export const addTicket = (ticket) => {
