@@ -10,7 +10,6 @@ class TicketControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisibleOnPage: false,
       selectedTicket: null,
       editing: false
     };
@@ -19,14 +18,15 @@ class TicketControl extends React.Component {
   handleClick = () => {
     if (this.state.selectedTicket != null) {
       this.setState({
-        formVisibleOnPage: false,
         selectedTicket: null,
         editing: false
       });
     } else {
-      this.setState(prevState => ({
-        formVisibleOnPage: !prevState.formVisibleOnPage,
-      }));
+      const { dispatch } = this.props;
+      const action = {
+        type: 'TOGGLE_FORM'
+      }
+    dispatch(action);
     }
   }
   //local state
@@ -41,7 +41,10 @@ class TicketControl extends React.Component {
       issue: issue,
     }
     dispatch(action);  //dispatches our action and updates the store
-    this.setState({formVisibleOnPage: false});
+    const action2 = {
+      type: 'TOGGLE_FORM'
+    }
+    dispatch(action2);
   }
   handleChangingSelectedTicket = (id) => {
     const selectedTicket = this.props.mainTicketList[id];
@@ -94,7 +97,7 @@ class TicketControl extends React.Component {
         onClickingEdit = {this.handleEditClick} 
       />
       buttonText = "Return to Ticket List";
-    } else if (this.state.formVisibleOnPage) {
+    } else if (this.props.formVisibleOnPage) {
       currentlyVisibleState = 
       <NewTicketForm 
         onNewTicketCreation={this.handleAddingNewTicketToList}  
@@ -119,12 +122,15 @@ class TicketControl extends React.Component {
 }
 
 TicketControl.propTypes = {
-  mainTicketList: PropTypes.object
+  mainTicketList: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool
 };
 
 const mapStateToProps = state => {
   return {
-    mainTicketList: state  //Key-value pairs of state to be mapped from Redux to React component go here.   Key-value pairs determine the state slices that should be mapped to the component's props
+    // mainTicketList: state  //Key-value pairs of state to be mapped from Redux to React component go here.   Key-value pairs determine the state slices that should be mapped to the component's props
+    mainTicketList: state.mainTicketList,  //return slices of state to be mapped to props
+    formVisibleOnPage: state.formVisibleOnPage
   }
 }
 
