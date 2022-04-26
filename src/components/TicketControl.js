@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from "prop-types";
+import * as a from './../actions';
 import NewTicketForm from './NewTicketForm';
 import TicketList from './TicketList';
 import TicketDetail from './TicketDetail';
@@ -23,27 +24,32 @@ class TicketControl extends React.Component {
       });
     } else {
       const { dispatch } = this.props;
-      const action = {
-        type: 'TOGGLE_FORM'
-      }
+      const action = 
+      // {type: 'TOGGLE_FORM'}
+      a.toggleForm();
+      dispatch(action);
     dispatch(action);
     }
   }
   //local state
   handleAddingNewTicketToList = (newTicket) => {
     const { dispatch } = this.props;
-    const { id, names, location, issue } = newTicket;
-    const action = {
-      type: 'ADD_TICKET',
-      id: id,
-      names: names,
-      location: location,
-      issue: issue,
-    }
-    dispatch(action);  //dispatches our action and updates the store
-    const action2 = {
-      type: 'TOGGLE_FORM'
-    }
+    // const { id, names, location, issue } = newTicket;
+    // const action = {
+    //   type: 'ADD_TICKET',
+    //   id: id,
+    //   names: names,
+    //   location: location,
+    //   issue: issue,
+    // }
+    // dispatch(action);  //dispatches our action and updates the store
+    // const action2 = {
+    //   type: 'TOGGLE_FORM'
+    // }
+    // dispatch(action2);
+    const action = a.addTicket(newTicket);
+    dispatch(action);
+    const action2 = a.toggleForm();
     dispatch(action2);
   }
   handleChangingSelectedTicket = (id) => {
@@ -52,10 +58,11 @@ class TicketControl extends React.Component {
   }
   handleDeletingTicket = (id) => {
     const { dispatch } = this.props;
-    const action = {
-      type: 'DELETE_TICKET',
-      id: id
-    }
+    // const action = {
+    //   type: 'DELETE_TICKET',
+    //   id: id
+    // }
+    const action = a.deleteTicket(id)
     dispatch(action);
     this.setState({selectedTicket: null});
   }
@@ -65,13 +72,14 @@ class TicketControl extends React.Component {
   handleEditingTicketInList = (ticketToEdit) => {  //If it's a new id, a new ticket will be added to the store. If it's an id that already exists, the existing ticket will be replaced
     const { dispatch } = this.props;
     const { id, names, location, issue } = ticketToEdit;
-    const action = {
-      type: 'ADD_TICKET',
-      id: id,
-      names: names,
-      location: location,
-      issue: issue,
-    }
+    // const action = {
+    //   type: 'ADD_TICKET',
+    //   id: id,
+    //   names: names,
+    //   location: location,
+    //   issue: issue,
+    // }
+    const action = a.addTicket(ticketToEdit);
     dispatch(action);
     this.setState({
       editing: false,
