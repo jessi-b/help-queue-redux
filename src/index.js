@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 import App from './components/App';
-import { createStore } from 'redux';
+import './index.css';
 import reducer from './reducers/ticket-list-reducer';
-import { Provider } from 'react-redux';
 
 const store = createStore(reducer);
 store.subscribe(() =>
@@ -16,4 +16,4 @@ ReactDOM.render(
     <App />
   </Provider>,
   document.getElementById('root')
-);
+)

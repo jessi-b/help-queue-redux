@@ -1,11 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import NewTicketForm from './NewTicketForm';
 import TicketList from './TicketList';
 import TicketDetail from './TicketDetail';
 import EditTicketForm from './EditTicketForm';
-
 
 class TicketControl extends React.Component {
   constructor(props) {
@@ -30,6 +29,7 @@ class TicketControl extends React.Component {
       }));
     }
   }
+  //local state
   handleAddingNewTicketToList = (newTicket) => {
     const { dispatch } = this.props;
     const { id, names, location, issue } = newTicket;
@@ -40,7 +40,7 @@ class TicketControl extends React.Component {
       location: location,
       issue: issue,
     }
-    dispatch(action);
+    dispatch(action);  //dispatches our action and updates the store
     this.setState({formVisibleOnPage: false});
   }
   handleChangingSelectedTicket = (id) => {
@@ -59,7 +59,7 @@ class TicketControl extends React.Component {
   handleEditClick = () => {
     this.setState({editing: true});
   }
-  handleEditingTicketInList = (ticketToEdit) => {
+  handleEditingTicketInList = (ticketToEdit) => {  //If it's a new id, a new ticket will be added to the store. If it's an id that already exists, the existing ticket will be replaced
     const { dispatch } = this.props;
     const { id, names, location, issue } = ticketToEdit;
     const action = {
@@ -121,9 +121,10 @@ class TicketControl extends React.Component {
 TicketControl.propTypes = {
   mainTicketList: PropTypes.object
 };
+
 const mapStateToProps = state => {
   return {
-    mainTicketList: state  // Key-value pairs of state to be mapped from Redux to React component go here.
+    mainTicketList: state  //Key-value pairs of state to be mapped from Redux to React component go here.   Key-value pairs determine the state slices that should be mapped to the component's props
   }
 }
 

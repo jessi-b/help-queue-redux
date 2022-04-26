@@ -4,7 +4,10 @@ export default (state = {}, action) => {
   switch (action.type) { //looks at action type prop
   case 'ADD_TICKET':
     //.assign creates a new key-value pair where the key is the ticket's id and the value is an object with all of the ticket's properties
-    //1.{} clones state obj w/ empty obj, {}, to avoid mutation of state instead of making clone first  2.state is the object that will be cloned 3.change to be made to new copy & always be the new added to list
+    //1.{} clones state obj w/ empty obj, {}, to avoid mutation of state instead of making clone first  
+    //2.state is the object that will be cloned 
+    //3.change to be made to new copy & always be the new added to list
+    //*provides update functionality w/ key-value pairs in an object
     return Object.assign({}, state, {  
       [id]: { 
         names: names,
