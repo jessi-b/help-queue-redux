@@ -34,14 +34,6 @@ class TicketControl extends React.Component {
   //local state
   handleAddingNewTicketToList = (newTicket) => {
     const { dispatch } = this.props;
-    // const { id, names, location, issue } = newTicket;
-    // const action = {
-    //   type: 'ADD_TICKET',
-    //   id: id,
-    //   names: names,
-    //   location: location,
-    //   issue: issue,
-    // }
     // dispatch(action);  //dispatches our action and updates the store
     // const action2 = {
     //   type: 'c.TOGGLE_FORM'
@@ -58,10 +50,6 @@ class TicketControl extends React.Component {
   }
   handleDeletingTicket = (id) => {
     const { dispatch } = this.props;
-    // const action = {
-    //   type: 'DELETE_TICKET',
-    //   id: id
-    // }
     const action = a.deleteTicket(id)
     dispatch(action);
     this.setState({selectedTicket: null});
@@ -71,14 +59,6 @@ class TicketControl extends React.Component {
   }
   handleEditingTicketInList = (ticketToEdit) => {  //If it's a new id, a new ticket will be added to the store. If it's an id that already exists, the existing ticket will be replaced
     const { dispatch } = this.props;
-    // const { id, names, location, issue } = ticketToEdit;
-    // const action = {
-    //   type: 'ADD_TICKET',
-    //   id: id,
-    //   names: names,
-    //   location: location,
-    //   issue: issue,
-    // }
     const action = a.addTicket(ticketToEdit);
     dispatch(action);
     this.setState({

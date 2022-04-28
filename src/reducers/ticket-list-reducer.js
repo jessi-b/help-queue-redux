@@ -1,8 +1,10 @@
+import * as c from "./../actions/ActionTypes";
+
 export default (state = {}, action) => {
 //create
   const { names, location, issue, id } = action;
   switch (action.type) { //looks at action type prop
-  case 'ADD_TICKET':
+  case c.ADD_TICKET:
     //.assign creates a new key-value pair where the key is the ticket's id and the value is an object with all of the ticket's properties
     //1.{} clones state obj w/ empty obj, {}, to avoid mutation of state instead of making clone first  
     //2.state is the object that will be cloned 
@@ -17,7 +19,7 @@ export default (state = {}, action) => {
       }
     });
 //delete
-  case 'DELETE_TICKET':
+  case c.DELETE_TICKET:
     let newState = { ...state };
     delete newState[id];
     return newState;

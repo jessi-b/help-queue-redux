@@ -1,10 +1,19 @@
-// import * as c from './../actions/ActionTypes';
+import * as c from './../actions/ActionTypes';
+
+// export default (state = false, action) => {
+//   switch (action.type) {
+//   case 'TOGGLE_FORM':
+//     return !state;  //true
+//   default:
+//     return state;  // dafault: false
+//   }
+// };
 
 export default (state = false, action) => {
   switch (action.type) {
-  case 'TOGGLE_FORM':
+  case c.TOGGLE_FORM:
     return !state;  //true
   default:
-    return state;  // dafault: false
+    return state;  //dafault: false
   }
 };
